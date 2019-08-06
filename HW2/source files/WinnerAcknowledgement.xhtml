@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<!--This page acknowledges the the user that his/her input has been recorded and if the user wins he/she gets movie tickets-->      
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Winner Acknowledgement</title>
+</h:head>
+<h:body>
+<p style="color: blue">Information entered on the form is saved</p>
+<h2><b> Thank you #{studentBean.firstname} #{studentBean.lastname} for completion  of the survey</b> </h2>
+<h2><b> CONGRATULATIONS!!!!  You have been rewarded with 2 movie tickets </b> </h2>
+<h3> Standard Deviation is: #{studentBean.standarddeviation}</h3>
+<br />
+<h3> Mean is : #{studentBean.mean}</h3>
+<br />
+<h:button value="Go back to Survey form" outcome="Survey.xhtml"/>
+<h:button value="Go back to Main Page" outcome="index.xhtml"/>
+</h:body>
+</html>

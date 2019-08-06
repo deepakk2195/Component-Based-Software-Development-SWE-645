@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<!--This page is the survey page which takes input from user and stores it and validaates the input-->      
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<style>
+body {background-color: powderblue;}
+h1   {color: blue;}
+p    {color: red;}
+</style>
+<title>Insert title here</title>
+</head>
+<h:body>
+<h1>Welcome to Student Survey Form Page</h1>
+<h:form>
+<p>First Name:</p> 
+<h:inputText id="firstnameID" value="#{studentBean.firstname}"
+required="true"
+validatorMessage="Please enter only alphbets of length 15">
+<f:validateRegex pattern="^[a-zA-Z]*" />
+<f:validateLength minimum="1" maximum="15" />
+</h:inputText>
+<h:message for="firstnameID" styleClass="error"/><br />	
+<p>Last Name:</p>
+<h:inputText id="lastnameID" value="#{studentBean.lastname}" 
+required="true" 
+validatorMessage="Please enter only alphbets of length 15">
+<f:validateRegex pattern="^[a-zA-Z]*" />
+<f:validateLength minimum="1" maximum="15" />
+</h:inputText>
+<h:message for="lastnameID" styleClass="error"/><br/>
+
+<p>Street Address:</p>
+ <h:inputText id="saddrID" value="#{studentBean.streetaddress}" required="true"
+ validatorMessage="Please enter numbers,aplhanumerics and alphabets only">
+ <f:validateLength minimum="1" maximum="30" />
+ </h:inputText>
+<h:message for="saddrID" styleClass="error"/><br/>
+<p>City:</p>
+<h:inputText id="cityID" value="#{studentBean.city}" required="true"
+validatorMessage="Please enter only combination of alphabets">
+<f:validateRegex pattern="^[a-zA-Z]*"/>
+<f:validateLength minimum="1" maximum="30" />
+</h:inputText>
+<h:message for="cityID" styleClass="error"/><br/>
+<p>State:</p>
+<h:inputText id="stateID" value="#{studentBean.state}" required="true"
+validatorMessage="Please enter only combination of alphabets">
+<f:validateRegex pattern="^[a-zA-Z]*"/>
+<f:validateLength minimum="1" maximum="30" />
+</h:inputText>
+<h:message for="stateID" styleClass="error"/> <br />
+<p>ZipCode:</p>
+<h:inputText id="zipcodeID" value="#{studentBean.zipcode}" required="true"
+validatorMessage="Please enter only combiantion of numbers of length 5 only">
+<f:validateRegex pattern="^[0-9]*"/>
+<f:validateLength minimum="5" maximum="5" />
+</h:inputText>
+<h:message for="zipcodeID" styleClass="error"/> <br />
+<p>Telephone:</p>
+<h:inputText id="telephoneID"  value="#{studentBean.phonenumber}" required="true"
+validatorMessage="Please in the format (xxx)-xxx-xxxx">
+<f:validateRegex pattern="\(\d{3}\)\-\d{3}-\d{4}"/>
+</h:inputText>
+<h:message for="telephoneID" styleClass="error"/> <br />
+<p>Email Id:</p>
+<h:inputText id="emailID" value="#{studentBean.email}" required="true"
+validatorMessage="Please enter a valid email-id:">
+<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+</h:inputText>
+<h:message for="emailID" styleClass="error"/> <br />
+<p>Date:</p>
+<h:inputText id="dateID" value="#{studentBean.date}" required = "true"
+validatorMessage="PLease enter a valid date">
+<f:convertDateTime pattern = "dd/mm/yyyy" />
+</h:inputText>
+<h:message for="dateID" styleClass="error"/><br />
+<p>1. What did you like the most about the campus ? <br />
+<h:selectManyCheckbox value="#{studentBean.campusOptions}">
+<f:selectItem itemValue="students" itemLabel="Students" />
+<f:selectItem itemValue="location" itemLabel="Location" />
+<f:selectItem itemValue="campus" itemLabel="Campus" />
+<f:selectItem itemValue="atmosphere" itemLabel="Atmosphere" />
+<f:selectItem itemValue="dormrooms" itemLabel="Dorm Rooms" />
+<f:selectItem itemValue="sports" itemLabel="Sports" />
+</h:selectManyCheckbox>
+</p>
+<p>2.How did you become interested about the university? <br />
+<h:selectOneRadio value="#{studentBean.interestedin}">
+<f:selectItem itemValue="friends" itemLabel="Friends" />
+<f:selectItem itemValue="television" itemLabel="Television" />
+<f:selectItem itemValue="internet" itemLabel="Internet" />
+<f:selectItem itemValue="other" itemLabel="Other" />
+</h:selectOneRadio>
+</p>	
+<p>3. How likely are you going to recommend this university to other prospective students? <br />
+<h:selectOneMenu value="#{studentBean.recommendation}"> <br />
+<f:selectItem itemValue="very_likely" itemLabel="Very Likely" />
+<f:selectItem itemValue="likely" itemLable="Likely" />
+<f:selectItem itemValue="unlikely" itemLabel="Unlikely" />
+</h:selectOneMenu>
+</p>
+<p>4. Enter atleast 10 numbers ranging between 1 and 100 in the Raffle field seperated by commas.<br /><br />
+<label for="raffle">Raffle: </label>
+<h:inputText id="raffleID" value="#{studentBean.raffle}" required="true"
+validator="#{studentBean.validateRaffle}">
+
+</h:inputText>
+<h:message for="raffleID" styleClass="error"/> <br />
+</p>
+<p><b>5.</b> Enter any additional comments <br />
+<h:inputTextarea value="#{studentBean.additionalComments}" cols="25" rows="5" />
+</p>
+<h:commandButton value="Submit" action="#{studentBean.submit}"/>
+<h:button value="Cancel / Reset" outcome="Survey.xhtml"></h:button>
+
+</h:form>
+</h:body>
+</html>
