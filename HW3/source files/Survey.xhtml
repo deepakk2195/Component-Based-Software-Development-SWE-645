@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<!--This page is the survey page which takes input from user and stores it and validaates the input-->
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<style>
+body {
+	background-color: powderblue;
+}
+
+h1 {
+	color: blue;
+}
+
+p {
+	color: red;
+}
+</style>
+	<title>Survey Page</title>
+</h:head>
+<h:body>
+	<h1>Welcome to Student Survey Form Page</h1>
+	<h:form id="Survey">
+
+		<p>First Name:</p>
+		<p:inputText id="firstnameID" value="#{studentBean.firstname}"
+			required="true"
+			validatorMessage="Please enter only alphbets of length 15">
+			<f:validateRegex pattern="^[a-zA-Z]*" />
+			<f:validateLength minimum="1" maximum="15" />
+		</p:inputText>
+		<p:message for="firstnameID" styleClass="error" />
+		<br />
+
+		<p>Last Name:</p>
+		<p:inputText id="lastnameID" value="#{studentBean.lastname}"
+			required="true"
+			validatorMessage="Please enter only alphbets of length 15">
+			<f:validateRegex pattern="^[a-zA-Z]*" />
+			<f:validateLength minimum="1" maximum="15" />
+		</p:inputText>
+		<p:message for="lastnameID" styleClass="error" />
+		<br />
+
+		<p>Street Address:</p>
+		<p:inputText id="saddrID" value="#{studentBean.streetaddress}"
+			required="true"
+			validatorMessage="Please enter numbers,aplhanumerics and alphabets only">
+			<f:validateLength minimum="1" maximum="30" />
+		</p:inputText>
+		<p:message for="saddrID" styleClass="error" />
+		<br />
+
+		<p>City:</p>
+		<p:inputText id="cityID" value="#{studentBean.city}" required="true"
+			validatorMessage="Please enter only combination of alphabets">
+			<!--<f:validateRegex pattern="^[a-zA-Z]*"/>-->
+			<f:validateLength minimum="1" maximum="30" />
+		</p:inputText>
+		<p:message for="cityID" styleClass="error" />
+		<br />
+
+		<p>State:</p>
+		<p:inputText id="stateID" value="#{studentBean.state}" required="true"
+			validatorMessage="Please enter only combination of alphabets">
+			<!--<f:validateRegex pattern="^[a-zA-Z]*"/>-->
+			<f:validateLength minimum="1" maximum="30" />
+		</p:inputText>
+		<p:message for="stateID" styleClass="error" />
+		<br />
+
+		<p>ZipCode:</p>
+		<p:inputText id="zipcodeID" value="#{studentBean.zipcode}"
+			required="true"
+			validatorMessage="Please enter only combiantion of numbers of length 5 only">
+			<f:validateRegex pattern="^[0-9]*" />
+			<f:validateLength minimum="5" maximum="5" />
+			<f:ajax event="blur" render="cityID stateID" execute="@this" />
+		</p:inputText>
+		<p:message for="zipcodeID" styleClass="error" />
+		<br />
+
+		<p>Telephone:</p>
+		<p:inputMask mask="(999) 999-9999" id="telephoneID"
+			value="#{studentBean.phonenumber}" required="true"
+			requiredMessage="Missing or Incomplete" />
+		<!--<f:validateRegex pattern="\(\d{3}\)\-\d{3}-\d{4}"/>-->
+		<p:message for="telephoneID" styleClass="error" />
+		<br />
+
+		<p>Email Id:</p>
+		<p:inputText id="emailID" value="#{studentBean.email}" required="true"
+			validatorMessage="Please enter a valid email-id:">
+			<f:validateRegex
+				pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+		</p:inputText>
+		<p:message for="emailID" styleClass="error" />
+		<br />
+
+		<p>Date:</p>
+		<p:calendar id="dateID" value="#{studentBean.date}" required="true"
+			requiredMessage="PLease enter a valid date" pattern="MM/dd/yyyy" />
+		<p:message for="dateID" styleClass="error" />
+		<br />
+
+		<p>Start Date:</p>
+		<p:calendar id="postartdateID" value="#{studentBean.postartdate}"
+			required="true" pattern="MM/dd/yyyy"
+			requiredMessage="Semester Start Date is a required field" />
+		<p:message for="postartdateID" styleClass="error" />
+		<br />
+
+		<p>
+			1. What did you like the most about the campus ? <br />
+			<p:selectManyCheckbox value="#{studentBean.campusOptions}">
+				<f:selectItem itemValue="students" itemLabel="Students" />
+				<f:selectItem itemValue="location" itemLabel="Location" />
+				<f:selectItem itemValue="campus" itemLabel="Campus" />
+				<f:selectItem itemValue="atmosphere" itemLabel="Atmosphere" />
+				<f:selectItem itemValue="dormrooms" itemLabel="Dorm Rooms" />
+				<f:selectItem itemValue="sports" itemLabel="Sports" />
+			</p:selectManyCheckbox>
+		</p>
+
+		<p>
+			2.How did you become interested about the university? <br />
+			<p:selectOneRadio value="#{studentBean.interestedin}">
+				<f:selectItem itemValue="friends" itemLabel="Friends" />
+				<f:selectItem itemValue="television" itemLabel="Television" />
+				<f:selectItem itemValue="internet" itemLabel="Internet" />
+				<f:selectItem itemValue="other" itemLabel="Other" />
+			</p:selectOneRadio>
+		</p>
+
+		<p>
+			3. How likely are you going to recommend this university to other
+			prospective students? <br />
+			<p:autoComplete value="" completeMethod="#{studentBean.TestMethod}" forceSelection="true" disabled="true"></p:autoComplete>
+			<p:autoComplete id="recID" value="#{studentBean.recommendation}"
+				completeMethod="#{studentBean.completeRec}" forceSelection="true"></p:autoComplete>
+			<!--forceSelection="true"-->
+			<!--required = "true" requiredMessage="You must choose an option"-->
+			<p:message for="recID" styleClass="error" />
+		</p>
+
+		<p>
+			4. Enter atleast 10 numbers ranging between 1 and 100 in the Raffle
+			field seperated by commas.<br />
+			<br /> <label for="raffle">Raffle: </label>
+			<p:inputText id="raffleID" value="#{studentBean.raffle}"
+				required="true" validator="#{studentBean.validateRaffle}">
+			</p:inputText>
+			<p:message for="raffleID" styleClass="error" />
+			<br />
+		</p>
+
+		<p>
+			<b>5.</b> Enter any additional comments <br />
+			<p:inputTextarea value="#{studentBean.additionalComments}" cols="25"
+				rows="5" />
+		</p>
+		<p:commandButton value="Submit" action="#{studentBean.submit}"
+			ajax="false" />
+		<p:button value="Cancel/Reset" outcome="Survey.xhtml"></p:button>
+
+	</h:form>
+</h:body>
+</html>
