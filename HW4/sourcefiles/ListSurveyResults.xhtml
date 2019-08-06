@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+ <title>List Survey</title>
+</h:head>
+
+<h:body>
+
+<h:form>
+<p:dataTable value="#{studentBean.searchresults}"
+			  var="currentstudent"
+			  border="2"
+			  styleClass="mainTable"
+			  captionClass="caption"
+			  headerClass="heading" >
+
+	<f:facet name="caption">Survey Details</f:facet>	  
+	
+	<p:column>
+	<f:facet name="header"> SL NO</f:facet>
+	#{currentstudent.slno}
+	</p:column>
+	
+	<p:column>
+	 <f:facet name="header">First Name</f:facet>
+	 #{currentstudent.firstname}
+	</p:column>
+	
+	<p:column>
+	 <f:facet name="header">Last Name</f:facet>
+	 #{currentstudent.lastname}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">Street Address</f:facet>
+	#{currentstudent.streetaddress}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">City Name</f:facet>
+	#{currentstudent.city}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">State Name</f:facet>
+	#{currentstudent.state}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">Zip Code</f:facet>
+	#{currentstudent.zipcode}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">Telephone Number</f:facet>
+	#{currentstudent.phonenumber}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">Email</f:facet>
+	#{currentstudent.email}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">Survey Date</f:facet>
+	#{currentstudent.date}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">Most Liked</f:facet>
+	<!--  #{currentstudent.campusOptions} -->
+	#{currentstudent.campusOptions}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">Interest in University ? </f:facet>
+	#{currentstudent.interestedin}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">Recomend Level</f:facet>
+	#{currentstudent.recommendation}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">Raffle Input</f:facet>
+	#{currentstudent.raffle}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">Additional Comments</f:facet>
+	#{currentstudent.additionalComments}
+	</p:column>
+	
+	<p:column>
+	<f:facet name="header">Action </f:facet>
+	<h:commandLink value = "Delete" action = "#{studentBean.deletedata(currentstudent)}"/>
+	</p:column>
+</p:dataTable>
+</h:form>
+ 
+ <div align="center">
+   <p:button value="Go Back to Survey Page" outcome="Survey"/>
+   <p:button value="Go Back to Search Page" outcome="SearchMenu"/>
+ </div>
+ 
+</h:body>
+</html>

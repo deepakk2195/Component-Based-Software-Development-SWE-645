@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Search Menu</title>
+</h:head>
+
+<h:body>
+
+<h3 align="center">Welcome to Search Menu Page</h3>
+	<h:form id="survey_form">
+	<fieldset>
+<p>First Name:</p>
+		<p:inputText id="firstnameID" value="#{studentBean.firstname}"
+			validatorMessage="Please enter only alphbets of length 15">
+			<f:validateRegex pattern="^[a-zA-Z]*" />
+		</p:inputText>
+		<p:message for="firstnameID" styleClass="error" />
+		<br />
+
+		<p>Last Name:</p>
+		<p:inputText id="lastnameID" value="#{studentBean.lastname}"
+			validatorMessage="Please enter only alphbets of length 15">
+			<f:validateRegex pattern="^[a-zA-Z]*" />
+		</p:inputText>
+		<p:message for="lastnameID" styleClass="error" />
+		<br />
+
+		<p>City:</p>
+		<p:inputText id="cityID" value="#{studentBean.city}"
+			validatorMessage="Please enter only combination of alphabets">
+			<!--<f:validateRegex pattern="^[a-zA-Z]*"/>-->
+		</p:inputText>
+		<p:message for="cityID" styleClass="error" />
+		<br />
+
+		<p>State:</p>
+		<p:inputText id="stateID" value="#{studentBean.state}"
+			validatorMessage="Please enter only combination of alphabets">
+			<!--<f:validateRegex pattern="^[a-zA-Z]*"/>-->
+		</p:inputText>
+		<p:message for="stateID" styleClass="error" />
+		<br />
+	</fieldset>
+
+ <p:commandButton value="Search" action="#{studentBean.search}" ajax="false"/>
+ <p:button value="Cancel / Clear" outcome="SearchMenu"/>
+ 
+ 
+</h:form>
+	
+</h:body>
+</html>
